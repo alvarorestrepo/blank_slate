@@ -1,0 +1,21 @@
+name: Build Firmware
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Build Firmware
+        uses: zmkfirmware/zmk-build-action@v0.1
+        with:
+          board: nrfmicro_11_flash  # Nombre de la placa base (NRF52840)
+          shield: blank_slate       # Nombre de tu teclado
+          keymap: blank_slate      # Nombre del keymap
